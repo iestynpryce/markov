@@ -1,2 +1,5 @@
 cpp/markov
 c/markov
+*.class
+*.swp
+*.swo
