@@ -31,7 +31,6 @@ def build(f):
     for i in range(0, npref):
         pref.append(nonword)
     for w in words:
-        suf = []
         add_suffix(pref,w)
         pref.append(w)
         del pref[0]
