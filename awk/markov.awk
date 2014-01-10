@@ -1,3 +1,4 @@
+#!/usr/bin/awk -f
 # markov.awk: markov chain algorithm for 2-word prefixes
 # From 'The Practice of Programming' by Pike and Kernighan
 BEGIN { MAXGEN = 10000; NONWORD = "\n"; w1 = w2 = NONWORD }
