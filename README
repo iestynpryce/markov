@@ -1,4 +1,4 @@
-This is a series of implementations of a simple Markov model word generator based on the chapters and exercises of Rob Pike and Brian Kernighan's excelent book 'The Practice Of Programming'.
+This is a series of implementations of a simple Markov model word generator based on the chapters and exercises of Rob Pike and Brian Kernighan's excellent book 'The Practice Of Programming'.
 
 Programs implemented myself have been in the languages:
 Go
