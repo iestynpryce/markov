@@ -6,6 +6,6 @@ set datafile separator "\t"
 set xlabel ' '
 set ylabel 'average run time (seconds)'
 unset key
-set terminal postscript
+set terminal postscript enhanced color
 set output 'timings.eps'
 plot 'timeavg.out' using 2:xticlabel(1) with boxes
