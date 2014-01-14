@@ -3,3 +3,7 @@ This is a series of implementations of a simple Markov model word generator base
 Programs implemented myself have been in the languages:
 Go
 Python
+
+To build executables for C, CPP and GO run:
+
+    make
