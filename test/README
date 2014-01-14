@@ -1,0 +1,20 @@
+== TESTING ==
+
+To run a set of tests against each of the markov programs written run:
+
+    bash run_tests.sh
+
+
+== PERFORMANCE ==
+
+To get an idea of how the different language implementations of the markov
+program comare run:
+
+    bash run_timings.sh
+
+This will output timeavg.out listing the programs and their average run time.
+You can create a bar chart of this data by running:
+
+    gnuplot barchart.gnuplot
+
+Which will ouput timings.eps.
