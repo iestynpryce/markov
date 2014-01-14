@@ -122,7 +122,7 @@ void build(char *prefix[NPREF], FILE *f)
   char buf[100], fmt[10];
 
   /* create a format string; %s could overflow buf */
-  sprintf(fmt, "%%%ds", sizeof(buf)-1);
+  sprintf(fmt, "%%%lds", sizeof(buf)-1);
   while (fscanf(f, fmt, buf) != EOF)
   {
       add(prefix, strdup(buf));
