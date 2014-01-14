@@ -1,6 +1,8 @@
 cpp/markov
 c/markov
 go/markov
+test/timeavg.out
+test/timings.eps
 *.class
 *.swp
 *.swo
