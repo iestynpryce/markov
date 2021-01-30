@@ -8,7 +8,7 @@ To run a set of tests against each of the markov programs written run:
 == PERFORMANCE ==
 
 To get an idea of how the different language implementations of the markov
-program comare run:
+program compare run:
 
     bash run_timings.sh
 
