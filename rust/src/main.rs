@@ -13,7 +13,7 @@ use rand::Rng;
 const NPREF: u32  = 2;       // number of prefix words
 const MAXGEN: u32 = 10000;   // maximum words generated
 
-const NONWORD: &'static str = "\n";   // cannot appear as a real word
+const NONWORD: &str = "\n";   // cannot appear as a real word
 
 type Prefixes = Vec<String>;
 type StateNode = Option<Box<State>>;
@@ -26,7 +26,7 @@ struct State {
 }
 
 impl State {
-    fn new(pref: &Prefixes, suf: Option<String>, next: Option<Box<State>>) -> State {
+    fn new(pref: &[String], suf: Option<String>, next: Option<Box<State>>) -> State {
         State {pref: pref.to_vec(), suf, next}
     }
 }
@@ -50,13 +50,13 @@ impl StateList {
         self.head = Some(new_state);
     }
 
-    fn random(&self) -> Option<&Box<State>> {
+    fn random(&self) -> Option<&State> {
         let mut rng = rand::thread_rng();
         let mut nmatch: u16 = 1;
         let mut state = self.head.as_ref();
         let mut ret_state = state;
         
-        while state.is_some() /*&& state.as_ref().unwrap().next.is_some()*/ {
+        while state.is_some() {
             let rand: u16 = rng.gen::<u16>();
             if (rand % nmatch) == 0 { ret_state = state; }
             if state.as_ref().unwrap().next.is_none() { break; }
@@ -64,14 +64,14 @@ impl StateList {
 
             nmatch += 1;
         }
-        ret_state
+        ret_state.map(|x| x.as_ref())
     }
 }
 
 // add: add word to suffix list, update prefix
 fn add(states: &mut HashMap<Prefixes, StateList>, prefix: &mut Prefixes, suffix: String) {
     // create if not found
-    let s = State::new(prefix, Some(suffix.to_string().clone()), None);
+    let s = State::new(prefix, Some(suffix.clone()), None);
     let sl = StateList::new();
 
     if !states.contains_key(prefix) {
@@ -107,11 +107,9 @@ fn generate(states: &HashMap<Prefixes, StateList>, nwords: u32) {
     for _i in 0..nwords {
         let state = match states.get(&prefix.to_vec()) {
             Some(s) => s.random().unwrap(),
-            None   => unreachable!(),
+            None   => break, 
         };
         let suffix = state.suf.as_ref().unwrap();
-
-        if suffix.eq(NONWORD) { break };
 
         println!("{}", suffix);
 
@@ -136,6 +134,5 @@ fn main() {
         Ok(f) => f,
         Err(e) => println!("Error: {}", e.to_string()),  
     }
-    add(&mut states, &mut prefix, NONWORD.to_string());
     generate(&states, MAXGEN);
 }
